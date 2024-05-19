@@ -2,7 +2,9 @@ import styled from "styled-components";
 
 export const Container = styled.button`   
     background-color: ${({ theme }) => theme.COLORS.BACKGROUND_700};
-   
+    
+    width: 98%;
+
     border: none;
     border-radius: 10px;
 

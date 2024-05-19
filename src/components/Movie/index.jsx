@@ -1,22 +1,31 @@
+import { Link } from "react-router-dom"
+
 import { Container, Rating } from "./styles";
+
 import star from "../../assets/star.svg";
 import starNoFill from "../../assets/star-no-fill.svg";
 
-import { Link } from "react-router-dom"
-
-
 
 export function Movie({ data, ...rest }) {
+    
+    const rating = data.rating
+
+    const starsArray = Array.from({ length: 5 }, (_, index) => {
+        return index <= rating ? star : starNoFill;
+    })
+
+
+
     return (
         <Container {...rest}>
             <Link to={data.link}> 
                 <h2>{data.title}</h2>
                 <Rating>
-                    <img src={star} alt="Nota do filme" />
-                    <img src={star} alt="Nota do filme" />
-                    <img src={star} alt="Nota do filme" />
-                    <img src={star} alt="Nota do filme" />
-                    <img src={starNoFill} alt="Nota do filme" />
+                    {
+                    starsArray.map((starImage, index) => (
+                            <img key={index} src={starImage} alt="Star" />
+                        ))
+                    }
                 </Rating>
                 <p>{data.description}</p>
                 {data.tags && (

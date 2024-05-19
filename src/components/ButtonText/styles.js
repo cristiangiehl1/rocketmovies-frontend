@@ -1,15 +1,16 @@
 import styled from "styled-components";
 
-export const Container = styled.button`
-    background: transparent;
+export const Container = styled.div`
+    background-color: transparent;
     border: none;
     
-    a {
+    > button {
         display: flex;
         align-items: center;
         justify-content: center;
         gap: 8px;
-        background: transparent;
+        background-color: transparent;
+        border: none;
         
         color: ${({ theme }) => theme.COLORS.PINK};        
         font-size: 16px;        

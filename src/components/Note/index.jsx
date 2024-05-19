@@ -5,25 +5,40 @@ import { Container, Rating } from "./styles";
 import star from "../../assets/star.svg";
 import starNoFill from "../../assets/star-no-fill.svg";
 
+import avatarPlaceholder from "../../assets/avatarPlaceholder.svg"
+
+import { api } from "../../services/api";
 
 
 export function Note({ data, ...rest }) {
+
+    const rating = data.rating
+
+    const avatarUrl = data.avatar ? `${api.defaults.baseURL}/files/${data.avatar}` : avatarPlaceholder
+    
+
+    const starsArray = Array.from({ length: 5 }, (_, index) => {
+        return index <= rating ? star : starNoFill;
+    })
+
+
+
    return (
         <Container {...rest}>
             <div className="title">
                 <h1>{data.title}</h1>
                 <Rating>
-                    <img src={star} alt="Nota do filme" />
-                    <img src={star} alt="Nota do filme" />
-                    <img src={star} alt="Nota do filme" />
-                    <img src={star} alt="Nota do filme" />
-                    <img src={starNoFill} alt="Nota do filme" />
+                    {
+                        starsArray.map((starImage, index) => (
+                                <img key={index} src={starImage} alt="Star" />
+                            ))
+                    }
                 </Rating>
             </div>
             <div className="movieInfos">
-                <img src={data.user_profile} alt={`foto de ${data.user}`} />
-                <span>Por {data.user}</span>
-                <span><FiClock /> {data.created_at}</span>
+                <img src={avatarUrl} alt={`foto de ${data.name}`} />
+                <span>Por {data.name}</span>
+                <span><FiClock /> {data.create_at}</span>
             </div>
             <div className="tags">
                     {

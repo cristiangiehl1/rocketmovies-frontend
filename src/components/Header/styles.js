@@ -18,6 +18,48 @@ export const Container = styled.div`
         font-weight: bold;
         color: ${({ theme }) => theme.COLORS.PINK};
     }
+
+    .searchBar {
+        display: flex;
+        width: 100%;
+        align-items: center;
+
+        background-color: ${({ theme }) => theme.COLORS.BACKGROUND_800};
+        border-radius: 10px;
+        
+        input {
+            width: 100%;
+            padding: 19px 0 19px 16px;
+    
+            border: none;
+    
+            color: ${({ theme }) => theme.COLORS.WHITE};  
+    
+            background-color: transparent;
+    
+            &::placeholder {
+                font-size: 14px;
+                font-family: "Roboto Slab", sans-serif;
+                color: ${({ theme }) => theme.COLORS.GRAY_300}
+            }    
+        }
+
+        button {
+            border: none;
+            background: transparent;
+            width: 20px;
+            height: 20px;
+
+            margin-right: 20px;
+
+            svg {
+                width: 20px;
+                height: 20px;
+                color: ${({ theme }) => theme.COLORS.PINK};
+            }
+        }
+    }
+
 `;
 
 

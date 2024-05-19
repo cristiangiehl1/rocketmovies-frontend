@@ -1,3 +1,7 @@
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
+
 import { FiMail } from "@react-icons/all-files/fi/FiMail"; 
 import { FiLock } from "@react-icons/all-files/fi/FiLock"; 
 
@@ -7,7 +11,26 @@ import { Input } from "../../components/Input"
 import { Button } from "../../components/Button"
 import { ButtonText } from "../../components/ButtonText"
 
+
+import { useAuth } from "../../hooks/auth";
+
 export function SignIn() {
+
+    const { signIn } = useAuth();
+
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+
+    const navigate = useNavigate();
+    
+    function handleSignIn() {
+        signIn({email, password});
+    }
+
+    function handleNav() {
+        navigate("/register")
+    }
+
     return(
         <Container>  
             <Form>
@@ -21,6 +44,7 @@ export function SignIn() {
                     icon={FiMail}
                     label="E-mail"
                     id="email"
+                    onChange={e => setEmail(e.target.value)}
                 />
                 <Input
                     placeholder="Senha"
@@ -28,9 +52,13 @@ export function SignIn() {
                     icon={FiLock}
                     label="password"
                     id="password"
+                    onChange={e => setPassword(e.target.value)}
                 />
-                <Button title="Entrar"/>
-                <ButtonText title="Criar conta" link="/register"/>
+                <Button title="Entrar" onClick={handleSignIn}/>
+                <ButtonText 
+                    title="Criar conta" 
+                    onClick={handleNav}
+                />
             </Form>
             <BackgroundImg />
         </Container>

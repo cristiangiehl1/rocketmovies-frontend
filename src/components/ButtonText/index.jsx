@@ -1,17 +1,16 @@
 import { Container } from "./styles";
-import { Link } from 'react-router-dom';
 
-export function ButtonText({ link, title, icon: Icon ,...rest }) {
+export function ButtonText({ title, icon: Icon ,...rest }) {
     return(
         
             <Container
                 type="button"
                 {...rest}
             >
-                <Link to={link}>
+                <button>
                     {Icon && <Icon size={20} />}
                     {title}
-                </Link>
+                </button>
             </Container>
        
 

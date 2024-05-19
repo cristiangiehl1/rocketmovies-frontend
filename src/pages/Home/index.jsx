@@ -1,17 +1,47 @@
+// icons
 import { FiPlus } from "@react-icons/all-files/fi/FiPlus"; 
 
+// 
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
+import { api } from "../../services/api";
 
+// styles
 import { Container, PageTitle, Content, Linkk } from "./styles";
 
+// components
 import { Header } from "../../components/Header";
 import { Movie } from "../../components/Movie";
 
 
 export function Home() {
+
+    const [searchMovie, setSearchMovie] = useState("");
+    const [movies, setMovies] = useState([])
+
+    const navigate = useNavigate();
+
+    function handleDetails(id) {
+            navigate(`/preview/${id}`)
+        }
+
+
+    useEffect(() => {
+        async function fetchMovies() {
+            const response = await api.get(`/notes?title=${searchMovie}`);
+            
+            setMovies(response.data.notesWithTags)       
+        }
+        fetchMovies();
+
+    }, [searchMovie]);
+
     return (
         <Container>
-            <Header />
+            <Header  
+                searchChange={setSearchMovie}              
+            />
             <PageTitle>
                 <h1>Meus filmes</h1>
                 <Linkk to="/new"> 
@@ -21,38 +51,15 @@ export function Home() {
             </PageTitle>
 
             <Content>
-            <Movie data={{
-                link: "/preview/1",
-                title: 'Interestelar',
-                description: 'As reservas naturais da Terra estão chegando ao fim e um grupo de astronautas recebe a missão de verificar possíveis planetas para receberem a população mundial, possibilitando a continuação da espécie. Cooper é chamado para liderar o grupo e aceita a missão sabendo que pode nunca mais ver os filhos. Ao lado de Brand, Jenkins e Doyle, ele seguirá em busca de um novo lar. As reservas naturais da Terra estão chegando ao fim e um grupo de astronautas recebe a missão de verificar possíveis planetas para receberem a população mundial, possibilitando a continuação da espécie. Cooper é chamado para liderar o grupo e aceita a missão sabendo que pode nunca mais ver os filhos. Ao lado de Brand, Jenkins e Doyle, ele seguirá em busca de um novo lar. As reservas naturais da Terra estão chegando ao fim e um grupo de astronautas recebe a missão de verificar possíveis planetas para receberem a população mundial, possibilitando a continuação da espécie. Cooper é chamado para liderar o grupo e aceita a missão sabendo que pode nunca mais ver os filhos. Ao lado de Brand, Jenkins e Doyle, ele seguirá em busca de um novo lar. ',
-                tags: [
-                    {id: '1', name: 'Ficção Cientifíca'},
-                    {id: '2', name: 'Drama'},
-                    {id: '3', name: 'Família'}
-                ]
-            }}/>  
-            
-            <Movie data={{
-                link: "/preview/1",
-                title: 'Interestelar',
-                description: 'As reservas naturais da Terra estão chegando ao fim e um grupo de astronautas recebe a missão de verificar possíveis planetas para receberem a população mundial, possibilitando a continuação da espécie. Cooper é chamado para liderar o grupo e aceita a missão sabendo que pode nunca mais ver os filhos. Ao lado de Brand, Jenkins e Doyle, ele seguirá em busca de um novo lar.',
-                tags: [
-                    {id: '1', name: 'Ficção Cientifíca'},
-                    {id: '2', name: 'Drama'},
-                    {id: '3', name: 'Família'}
-                ]
-            }}/>    
-
-            <Movie data={{
-                link: "/preview/1",
-                title: 'Interestelar',
-                description: 'As reservas naturais da Terra estão chegando ao fim e um grupo de astronautas recebe a missão de verificar possíveis planetas para receberem a população mundial, possibilitando a continuação da espécie. Cooper é chamado para liderar o grupo e aceita a missão sabendo que pode nunca mais ver os filhos. Ao lado de Brand, Jenkins e Doyle, ele seguirá em busca de um novo lar.',
-                tags: [
-                    {id: '1', name: 'Ficção Cientifíca'},
-                    {id: '2', name: 'Drama'},
-                    {id: '3', name: 'Família'}
-                ]
-            }}/>                                         
+            {
+                movies.map(movie => (                
+                <Movie 
+                    key={String(movie.id)}
+                    data={movie}  
+                    onClick={() => handleDetails(movie.id)}
+                />
+                ))
+            }                                     
             </Content>                     
         </Container>
     )
