@@ -10,5 +10,5 @@ import axios from "axios";
 
 // We will configure communication settings with our API.
 export const api = axios.create({
-    baseURL: "http://localhost:3333"
+    baseURL: "https://rocketmovies-api-47kl.onrender.com"
 })
