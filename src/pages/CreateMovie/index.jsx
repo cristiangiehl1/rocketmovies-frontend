@@ -100,17 +100,22 @@ export function CreateMovie() {
         navigate(-1);
     }
 
+    function handleHome() {
+        navigate("/");
+    }
+
     
     return(
         <Container>
             <Header searchChange={() => {}}/>
             <main>
+                <ButtonText 
+                    title="Voltar" 
+                    icon={FiArrowLeft} 
+                    onClick={handleHome}
+                />    
                 <Form>
-                    <ButtonText 
-                        title="Voltar" 
-                        icon={FiArrowLeft} 
-                        onClick={handleBack}
-                    />
+
 
                     <h1>Novo filme</h1>
 

@@ -4,7 +4,7 @@ export const Container = styled.div`
     width: 100%;
     height: 100vh;
 
-    > button {
+    > .teste {
         margin-left: 123px;
         margin-top: 40px;
     }

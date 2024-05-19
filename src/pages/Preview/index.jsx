@@ -34,7 +34,7 @@ export function Preview() {
         async function fetchMovie() {
             const response = await api.get(`/notes/${params.id}`)
             setData(response.data)
-            console.log(response);
+            // console.log(response);
         }
 
         fetchMovie();
@@ -45,8 +45,9 @@ export function Preview() {
     return(
         <Container>
             <Header searchChange={() => {}}/>
-            <ButtonText 
+            <ButtonText
                     title="Voltar"
+                    className="teste"
                     icon={FiArrowLeft}
                     onClick={handleBack}
             />

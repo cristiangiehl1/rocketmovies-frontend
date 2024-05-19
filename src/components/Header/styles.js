@@ -76,7 +76,7 @@ export const Profile = styled.div`
         line-height: 24px;
         text-align: right;
 
-        white-space: nowrap;
+        white-space: nowrap;  
           
         
         button {
@@ -84,8 +84,6 @@ export const Profile = styled.div`
             color: ${({ theme }) => theme.COLORS.GRAY_300};
             background-color: transparent;
             border: none;
-            text-align: right;
-            width: 50%;
         }
     }
 
@@ -98,7 +96,7 @@ export const Profile = styled.div`
             width: 56px;
             height: 56px;
             border-radius: 50%;
-            border: 1px solid ${({theme}) => theme.COLORS.GRAY_300};
+            border: 1px solid ${({theme}) => theme.COLORS.GRAY_300};            
         }
 
     }

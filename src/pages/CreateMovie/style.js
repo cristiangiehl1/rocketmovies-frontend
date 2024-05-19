@@ -22,6 +22,10 @@ export const Container = styled.div`
             border-radius: 9999px; 
             
         }   
+
+        .backHome {
+            width: 50px;
+        }
     }
 `;
 

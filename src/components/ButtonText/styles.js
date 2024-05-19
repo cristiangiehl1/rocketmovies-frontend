@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const Container = styled.div`
     background-color: transparent;
-    border: none;
+    border: none;    
     
     > button {
         display: flex;
